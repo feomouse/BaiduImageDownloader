@@ -1,0 +1,28 @@
+@{
+  Layout = "_Layout";
+}
+
+<h3>搜索关键字:</h3>
+<input type="input" id="keyser" placeholder="Key"/>
+<h3>数量</h3>
+<input type="input" id="picnum" placeholder="Can be divide by 20"/>
+<button id="ser">Search</button>
+<h5 id="mes"></h5>
+<script>
+  $(function(){
+    $("#ser").click(function(){
+              $("#mes").text("Downloading pic");
+              $.ajax({
+                url: "/Search/Download",
+                method: "POST",
+                data: $("#keyser").val() + ';' + $("#picnum").val(),
+                success: function(data, status, xhr){
+                    $("#mes").text(data);
+                },
+                error: function(xhr, status, err){
+                    $("#mes").text(err);
+                }
+              })
+          })
+  })
+</script>
