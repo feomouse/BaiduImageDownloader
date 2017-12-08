@@ -12,5 +12,4 @@ is set to `d:/baiduimg`, and you can change it in your own way;
 ### 2.RestSharp: 
       Simple .NET REST Client;i use it to send a requset to server and get json data and image back which i need;
 ### 3.The way how to spider image from baidu image: 
-      the inside logic is the json data, which give me the raw images url in different server;but baidu encryption it, so we have to decrypt
-      it, and use restsharp to get the read image url;
+      To get the pic,the first step is send a format url with some specify query string, then server send json data back,the         inside logic is the json data, which give me the raw images url in different server;but baidu encryption it, so we have       to decrypt it, and use restsharp to get the real image url;
