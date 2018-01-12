@@ -4,25 +4,44 @@
 
 <h3>搜索关键字:</h3>
 <input type="input" id="keyser" placeholder="Key"/>
-<h3>数量</h3>
+<h3>数量:</h3>
 <input type="input" id="picnum" placeholder="Can be divide by 20"/>
+<h4>保存目录:(seperate the dirname by "\\")</h4>
+<input type="input" id="savedir" placeholder="Default:'D:\\baiduimgs'"/>
 <button id="ser">Search</button>
 <h5 id="mes"></h5>
 <script>
   $(function(){
     $("#ser").click(function(){
               $("#mes").text("Downloading pic");
-              $.ajax({
-                url: "/Search/Download",
-                method: "POST",
-                data: $("#keyser").val() + ';' + $("#picnum").val(),
-                success: function(data, status, xhr){
-                    $("#mes").text(data);
-                },
-                error: function(xhr, status, err){
-                    $("#mes").text(err);
-                }
-              })
+              if($("#savedir").val() === "")
+              {
+                $.ajax({
+                  url: "/Search/Download",
+                  method: "POST",
+                  data: $("#keyser").val() + ';' + $("#picnum").val() + ';' + "D:\\baiduimgs" ,
+                  success: function(data, status, xhr){
+                      $("#mes").text(data);
+                  },
+                  error: function(xhr, status, err){
+                      $("#mes").text(err);
+                  }
+                })                
+              }
+              else
+              {
+                $.ajax({
+                  url: "/Search/Download",
+                  method: "POST",
+                  data: $("#keyser").val() + ';' + $("#picnum").val() + ';' + $("#savedir").val(),
+                  success: function(data, status, xhr){
+                      $("#mes").text(data);
+                  },
+                  error: function(xhr, status, err){
+                      $("#mes").text(err);
+                  }
+                })
+              }
           })
   })
 </script>

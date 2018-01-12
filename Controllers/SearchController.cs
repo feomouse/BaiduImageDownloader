@@ -20,8 +20,10 @@ namespace processMsg.Controllers
             string rec = "";
             string searchtype = "星系";
             string downloadnum = "20";
+            string savedir = "";
             int reqtimes = 1;
             int reqtimessta = 0;
+
             if(Request.Body != null)
             {
                 StreamReader reader = new StreamReader(Request.Body);
@@ -29,6 +31,8 @@ namespace processMsg.Controllers
                 string[] arr = rec.Split(';');
                 searchtype = arr[0];
                 downloadnum = arr[1];
+                savedir = arr[2];
+
                 reqtimes = Convert.ToInt32(downloadnum)/20;
             }
             Dictionary<string, string> dic = new Dictionary<string, string>
@@ -86,7 +90,6 @@ namespace processMsg.Controllers
                 var data = obj["data"].ToString();
                 JArray imgdata = (JArray)JsonConvert.DeserializeObject(data);
 
-                string savedir = "d:\\baiduimg";
                 if(!Directory.Exists(savedir))
                 {
                     DirectoryInfo di = Directory.CreateDirectory(savedir);
